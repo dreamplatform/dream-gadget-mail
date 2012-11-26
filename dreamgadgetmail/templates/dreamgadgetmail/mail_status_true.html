@@ -1,0 +1,130 @@
+{% load i18n %}<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link href='//fonts.googleapis.com/css?family=Ubuntu:500,700' rel='stylesheet' type='text/css'>
+<script type="text/JavaScript">
+function timedRefresh(timeoutPeriod) {
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+</script>
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    body {
+        font-family: 'Ubuntu';
+        font-size: 14px;
+        overflow: hidden;
+    }
+    #content {
+        height: 189px;
+        padding: 0 17px;
+        padding-top: 170px;
+    }
+    #content:hover #bubble {
+        color: #FF8900;
+    }
+    #gadget {
+        background: url('/static/dreamgadgetmail/img/mail_status_true/bg.png') no-repeat left top;
+        height: 400px;
+        width: 300px;
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        margin: -200px 0 0 -150px;
+    }
+    #bubble {
+        width: 150px;
+        min-height: 114px;
+        color: #e57c00;
+    }
+    #top {
+        background: url('/static/dreamgadgetmail/img/mail_status_true/textTop.png') no-repeat left top;
+        height: 20px;
+    }
+    #bottom {
+        background: url('/static/dreamgadgetmail/img/mail_status_true/textBot.png') no-repeat left top;
+        height: 33px;
+    }
+    #center {
+        background: url('/static/dreamgadgetmail/img/mail_status_true/textCen.png') repeat left top;
+        min-height: 61px;
+        text-align: center;
+    }
+    #center p {
+        padding: 0 15px;
+        line-height: 16px;
+        font-weight: 500;
+    }
+
+    #footer {
+        bottom: 15px;
+        left: 0;
+        right: 0;
+        position: absolute;
+        width: auto;
+        text-align: right;
+        padding: 0 15px;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+    }
+    #lisence {
+        background: url('/static/dreamgadgetmail/img/mail_status_true/lisence.png') no-repeat left top;
+        height: 64px;
+        width: 64px;
+        float: left;
+        left: 10px;
+        position: absolute;
+        bottom: -10px;
+    }
+    .corner {
+        position: absolute;
+        background: url('/static/dreamgadgetmail/img/generic_elements/white_corners.png');
+        width: 8px; height: 8px;
+    }
+        #corner-ne {
+            top: 0; left: 0;
+        }
+        #corner-nw {
+            top: 0; right: 0;
+            background-position: 8px 0;
+        }
+        #corner-sw {
+            bottom: 0; right: 0;
+            background-position: 8px 8px;
+        }
+        #corner-se {
+            bottom: 0; left: 0;
+            background-position: 0 8px;
+        }
+
+</style>
+</head>
+<body onload="JavaScript:timedRefresh(60000);">
+    
+    <div id="gadget">
+        <a href="http://posti.unelmakoulu.fi" target="_blank" style="text-decoration: none;">
+            <div id="content">
+                <div id="bubble">
+                    <div id="top"></div>
+                    <div id="center">
+                    <p>{% blocktrans count count=mail_count %}You have one unread email. Do you want to read it?{% plural %}You have {{ count }} emails. Do you want to read them?{% endblocktrans %}</p>
+                    </div>
+                    <div id="bottom"></div>
+                </div>
+            </div>
+        </a>
+        <div id="footer"><span id="lisence"></span>{% trans "#copyright" %}</div>
+    </div>
+    <script type="text/javascript">
+        if(window.parent == window) {
+            window.opener.location.reload();
+            window.close();
+        }
+    </script>
+</body>
+</html>
